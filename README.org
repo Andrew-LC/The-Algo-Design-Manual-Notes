@@ -1,0 +1,3 @@
+#+title: The Algorithm Design and Manual
+
+These are my notes and exercises.

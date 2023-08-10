@@ -1,0 +1,71 @@
+#+title: Data Structures Chapter Exercises
+#+date: 2023-08-10
+
+** Stacks, Queues and Lists
+
++ 3.1
+
+#+begin_src cpp 
+#include <iostream>
+#include <stack>
+
+#define LEFT_CURLY '('
+#define RIGHT_CURLY ')'
+
+using namespace std;
+
+int main()
+{
+    stack<char> charStack;
+    string pattern = "())";
+    int count = 0;
+    char prev, curr;
+    
+    while (pattern[count] != '\0') {
+        curr = pattern[count];
+        if(curr == LEFT_CURLY){
+            charStack.push(curr);
+        } else if(curr == RIGHT_CURLY){
+            if(charStack.empty()){
+                return 1;
+            } else if(charStack.top() == LEFT_CURLY){
+                charStack.pop();
+            } else {
+                return 1;
+            }
+        }
+        count++;
+    }
+    
+    if(charStack.empty()){
+        cout << "The pattern is balanced";
+    } else {
+        cout << "The pattern is not balanced";
+    }
+    
+    return 0;
+}
+
+#+end_src
+
++ 3.2
+
+  #+begin_src 
+BEGIN
+    L: Linked List -> head
+    T: Tail
+    Temp
+    Prev = NULL   // To keep track of the previous node
+    Curr = L.HEAD // To traverse the list
+    
+    While Curr != NULL
+        Temp = Curr.Next
+        Curr.Next = Prev
+        Prev = Curr
+        Curr = Temp
+    
+    H = Prev
+END
+#+end_src
+
+The above algorithm takes linear time to execute the reversal of the singly linked list, all operations are contant while the loop takes n time.
